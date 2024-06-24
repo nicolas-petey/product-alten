@@ -1,0 +1,38 @@
+
+### Front-end ###
+
+front/node_modules/
+front/.angular
+
+### Back-end ###
+
+HELP.md
+product-api/.gradle
+product-api/build/
+!product-api/gradle/wrapper/gradle-wrapper.jar
+!product-api/**/src/main/**/build/
+!product-api/**/src/test/**/build/
+
+### STS ###
+.product-api/apt_generated
+.product-api/classpath
+.product-api/factorypath
+.product-api/project
+.product-api/settings
+.product-api/springBeans
+.product-api/sts4-cache
+product-api/bin/
+!product-api/**/src/main/**/bin/
+!product-api/**/src/test/**/bin/
+
+### IntelliJ IDEA ###
+product-api/.idea
+product-api/*.iws
+product-api/*.iml
+product-api/*.ipr
+product-api/out/
+!product-api/**/src/main/**/out/
+!product-api/**/src/test/**/out/
+
+
+product-api/db/

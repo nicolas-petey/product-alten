@@ -12,6 +12,8 @@ public interface ProductService {
 
     Product findById(int id);
 
+    Product findByCode(String code);
+
     Product save(Product product);
 
     Product update(int id, Product product);

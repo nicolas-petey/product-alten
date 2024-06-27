@@ -23,8 +23,7 @@ public class Product {
     @Column(name = "description", nullable = false, length = 255)
     private String description;
 
-    @Column(name = "image", nullable = false, length = 255)
-    @Nullable
+    @Column(name = "image", nullable = true)
     private String image;
 
     @Column(name = "price", nullable = false)
@@ -39,15 +38,14 @@ public class Product {
     @Column(name = "inventoryStatus", nullable = false)
     private InventoryStatus inventoryStatus;
 
-    @Column(name = "rating", nullable = false)
-    @Nullable
+    @Column(name = "rating", nullable = true)
     private Integer rating;
 
     public Product() {
     }
 
-    public Product(Integer id, String code, String name, String description, @Nullable String image, Integer price,
-                   String category, Integer quantity, InventoryStatus inventoryStatus, @Nullable Integer rating) {
+    public Product(Integer id, String code, String name, String description, String image, Integer price,
+                   String category, Integer quantity, InventoryStatus inventoryStatus, Integer rating) {
         this.id = id;
         this.code = code;
         this.name = name;
@@ -92,12 +90,11 @@ public class Product {
         this.description = description;
     }
 
-    @Nullable
     public String getImage() {
         return image;
     }
 
-    public void setImage(@Nullable String image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
@@ -133,12 +130,11 @@ public class Product {
         this.inventoryStatus = inventoryStatus;
     }
 
-    @Nullable
     public Integer getRating() {
         return rating;
     }
 
-    public void setRating(@Nullable Integer rating) {
+    public void setRating(Integer rating) {
         this.rating = rating;
     }
 }

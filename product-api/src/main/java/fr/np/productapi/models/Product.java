@@ -27,7 +27,7 @@ public class Product {
     private String image;
 
     @Column(name = "price", nullable = false)
-    private Integer price;
+    private Float price;
 
     @Column(name = "category", nullable = false, length = 50)
     private String category;
@@ -39,13 +39,13 @@ public class Product {
     private InventoryStatus inventoryStatus;
 
     @Column(name = "rating", nullable = true)
-    private Integer rating;
+    private Float rating;
 
     public Product() {
     }
 
-    public Product(Integer id, String code, String name, String description, String image, Integer price,
-                   String category, Integer quantity, InventoryStatus inventoryStatus, Integer rating) {
+    public Product(Integer id, String code, String name, String description, String image, Float price,
+                   String category, Integer quantity, InventoryStatus inventoryStatus, Float rating) {
         this.id = id;
         this.code = code;
         this.name = name;
@@ -98,11 +98,11 @@ public class Product {
         this.image = image;
     }
 
-    public Integer getPrice() {
+    public Float getPrice() {
         return price;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(Float price) {
         this.price = price;
     }
 
@@ -130,11 +130,11 @@ public class Product {
         this.inventoryStatus = inventoryStatus;
     }
 
-    public Integer getRating() {
+    public Float getRating() {
         return rating;
     }
 
-    public void setRating(Integer rating) {
+    public void setRating(Float rating) {
         this.rating = rating;
     }
 }

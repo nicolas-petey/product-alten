@@ -21,39 +21,47 @@ public class ProductApiApplication {
         SpringApplication.run(ProductApiApplication.class, args);
     }
 
+
     /**
-         * Cette méthode initialise l'application en chargeant des produits à partir d'un fichier JSON dans la base de données.
-         * Elle utilise l'interface CommandLineRunner de Spring Boot qui indique qu'un bean doit être exécuté lorsqu'il est contenu dans une SpringApplication.
-         * La méthode est annotée avec @Bean, ce qui signifie qu'une instance de CommandLineRunner sera créée, gérée par le conteneur IoC de Spring, et partagée à travers l'application.
-         *
-         * @param productService Le service utilisé pour les opérations sur les produits.
-         * @return CommandLineRunner Cette méthode retourne une instance de CommandLineRunner qui charge les produits dans la base de données.
-    */
+     * Initializes the application by loading products from a JSON file into the database.
+     * This method is run at the start of the application.
+     *
+     * @param productService The service class for managing products.
+     * @return CommandLineRunner This returns a CommandLineRunner object that can be run from the command line.
+     */
     @Bean
     public CommandLineRunner init(ProductService productService) {
 
         return args -> {
-            // Créer un ObjectMapper pour convertir le fichier JSON en objets Product.
+
+            // Create a new ObjectMapper for mapping JSON to Java objects.
             ObjectMapper mapper = new ObjectMapper();
-            // Définir le type d'objet que l'ObjectMapper va créer.
+
+            // Create a TypeReference for a list of Product objects.
             TypeReference<List<Product>> typeReference = new TypeReference<>() {};
-            // Localiser le fichier JSON dans le classpath.
+
+            // Load the JSON file from the classpath.
             ClassPathResource resource = new ClassPathResource("db/products.json");
             try (InputStream inputStream = resource.getInputStream()) {
-                // Convertir le fichier JSON en une liste d'objets Product.
+
+                // Map the JSON file to a list of Product objects.
                 List<Product> products = mapper.readValue(inputStream, typeReference);
 
-                // Itérer sur la liste des produits.
+                // Iterate over the list of products.
                 for (Product product : products) {
-                    // Si le produit n'existe pas déjà dans la base de données, le sauvegarder.
+
+                    // If the product does not already exist in the database, save it.
                     if (productService.findByCode(product.getCode()) == null) {
                         productService.save(product);
                     } else {
+                        // If the product already exists in the database, print a message.
                         System.out.println("Product with code " + product.getCode() + " already exists.");
                     }
                 }
+                // Print a message when all products have been processed.
                 System.out.println("Products processed!");
             } catch (IOException e) {
+                // Print an error message if there was a problem processing the products.
                 System.out.println("Unable to process products: " + e.getMessage());
             }
         };

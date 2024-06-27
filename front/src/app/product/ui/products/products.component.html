@@ -52,7 +52,9 @@
               ><span class="product-category">{{ product.category }}</span>
             </div>
             <div class="product-list-action">
-              <span class="product-price">${{ product.price }}</span>
+              <span class="product-price">{{
+                product.price | currency : "EUR"
+              }}</span>
               <p-button
                 icon="pi pi-shopping-cart"
                 label="Add to Cart"
@@ -100,7 +102,9 @@
               ></p-rating>
             </div>
             <div class="product-grid-item-bottom">
-              <span class="product-price">${{ product.price }}</span>
+              <span class="product-price">{{
+                product.price | currency : "EUR"
+              }}</span>
               <p-button
                 icon="pi pi-shopping-cart"
                 [disabled]="product.inventoryStatus === 'OUTOFSTOCK'"
